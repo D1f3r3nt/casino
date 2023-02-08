@@ -1,9 +1,9 @@
 import time
-from blackjack import carta, juagador
+from blackjack import carta, jugador
 class Mesa:
     baraja = carta.Carta()
-    player = juagador.Jugador('Jugador')
-    crupiere = juagador.Jugador('Crupiere')
+    player = jugador.Jugador('Jugador')
+    crupiere = jugador.Jugador('Crupiere')
 
     def __init__(self):
         self._crupiereInit()
@@ -60,7 +60,7 @@ class Mesa:
         print()
         print('Fin de la partida')
         print()
-        if self.player.alive == False or self.crupiere.puntos > self.player.puntos:
+        if self.player.alive == False or (self.crupiere.puntos > self.player.puntos and self.crupiere.alive == True):
             print('Gana la casa')
         elif self.crupiere.alive == False or self.crupiere.puntos < self.player.puntos:
             print('Gana el jugador')
