@@ -1,17 +1,39 @@
 import time
-from blackjack import carta, jugador
+from blackjack.carta import Carta
+from blackjack.jugador import Jugador
 class Mesa:
-    baraja = carta.Carta()
-    player = jugador.Jugador('Jugador')
-    crupiere = jugador.Jugador('Crupiere')
+    baraja = Carta()
+    player = Jugador('Jugador')
+    crupiere = Jugador('Crupiere')
 
     def __init__(self):
-        self._crupiereInit()
-        self._playerInit()
-        self._playerJuego()
-        self._crupiereJuego()
-        self._finPartida()
+        if (self._entrada()):
+            self._crupiereInit()
+            self._playerInit()
+            self._playerJuego()
+            self._crupiereJuego()
+            self._finPartida()
         pass
+
+    def _entrada(self):
+        print('Bienvenido al blackjack')
+        while True:
+            print('Que quieres apostar? (min. 5)')
+            apuesta = input('==> ')
+            if (apuesta.isnumeric()):
+                if (int(apuesta) >= 5):
+                    if (self.player.dinero.apostarDinero(int(apuesta))):
+                        print('==========================================')
+                        print()
+                        break
+                    else:
+                        print('No tienes tanto saldo')
+                        print('Quieres salir? (exit)')
+                        res = input('==> ')
+                        if (res == "exit"):
+                            return False
+        return True
+        
 
     def _crupiereInit(self):
         self.crupiere.cogerCarta(self.baraja.cogerUna())
@@ -25,17 +47,18 @@ class Mesa:
 
     def _playerJuego(self):
         while self.player.alive:
-            print('Quieres pasar(P) o quieres coger(C)?')
+            print('Quieres pasar(P), coger(C) o doblar(D)?')
             response = input()
             if (response == 'P'):
                 return
-            
-            print('Quieres apostar?(Y/n)')
-            response = input()
 
             self.player.cogerCarta(self.baraja.cogerUna())
             self.crupiere.mostarSoloPrimera()
             self.player.mostrar()
+
+            if (response == 'D'):
+                self.player.dinero.doblarApuesta()
+                break
         time.sleep(2)
 
     def _crupiereJuego(self):
@@ -62,10 +85,13 @@ class Mesa:
         print()
         if self.player.alive == False or (self.crupiere.puntos > self.player.puntos and self.crupiere.alive == True):
             print('Gana la casa')
+            self.player.dinero.hasGanado(False)
         elif self.crupiere.alive == False or self.crupiere.puntos < self.player.puntos:
             print('Gana el jugador')
+            self.player.dinero.hasGanado(True)
         else:
             print('EMPATE')
         print()
         print('==========================================')
+        print(str(self.player.dinero.dinero) + ' €')
         print()

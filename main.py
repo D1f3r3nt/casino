@@ -1,3 +1,3 @@
-from blackjack import mesa
+from blackjack.mesa import Mesa
 
-mesa.Mesa()
+Mesa()

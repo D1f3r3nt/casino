@@ -1,9 +1,12 @@
+from blackjack.banco import Banco
+
 class Jugador:
     cartas = []
     puntos = 0
     alive = True
     nombre = ""
     _restas = 0
+    dinero = Banco()
 
     def __init__(self, nombre):
         self.cartas = []
