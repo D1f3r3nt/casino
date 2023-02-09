@@ -22,7 +22,7 @@ class Juego:
         pass
 
     def _apuestaNumero(self):
-        while self.jugador.banco.dinero > 0:
+        while True:
             try:
                 print(f"Tu saldo es {self.jugador.banco.dinero} €")
                 print(f"¿Cuánto apuestas? (min 0)")

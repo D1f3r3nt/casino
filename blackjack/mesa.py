@@ -47,10 +47,13 @@ class Mesa:
 
     def _playerJuego(self):
         while self.player.alive:
+            print()
+            print('==========================================')
+            print()
             print('Quieres pasar(P), coger(C) o doblar(D)?')
-            response = input()
+            response = input("==> ")
             if (response == 'P'):
-                return
+                break
 
             self.player.cogerCarta(self.baraja.cogerUna())
             self.crupiere.mostarSoloPrimera()
@@ -59,7 +62,11 @@ class Mesa:
             if (response == 'D'):
                 self.player.banco.doblarApuesta()
                 break
+
         time.sleep(2)
+        print()
+        print('==========================================')
+        print()
 
     def _crupiereJuego(self):
         while self.player.alive and self.crupiere.alive and self.crupiere.puntos < 17:
@@ -70,6 +77,9 @@ class Mesa:
             self.crupiere.cogerCarta(self.baraja.cogerUna())
             self.crupiere.mostrar()
             self.player.mostrar()
+            print()
+            print('==========================================')
+            print()
 
     def _finPartida(self):
         print("...")
