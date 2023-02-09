@@ -1,4 +1,4 @@
-from blackjack.banco import Banco
+from banco import Banco
 
 class Jugador:
     cartas = []
@@ -6,14 +6,14 @@ class Jugador:
     alive = True
     nombre = ""
     _restas = 0
-    dinero = Banco()
 
-    def __init__(self, nombre):
+    def __init__(self, nombre, saldo):
         self.cartas = []
         self.puntos = 0
         self.alive = True
         self.nombre = nombre
         self._restas = 0
+        self.banco = saldo
         pass
 
     def cogerCarta(self, carta):
