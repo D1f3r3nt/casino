@@ -2,6 +2,7 @@ import time
 from ruleta.ruleta import Ruleta
 from ruleta.jugador import Jugador
 
+# Esta clase es donde se realizara la logica del juego
 class Juego:    
     def __init__(self, saldo):
         self.ruleta = Ruleta()
@@ -21,6 +22,7 @@ class Juego:
         self._resultados()
         pass
 
+    # Recoge la apuesta que esta haciendo el jugador al numero
     def _apuestaNumero(self):
         while True:
             try:
@@ -35,6 +37,7 @@ class Juego:
             except ValueError:
                 print(f"El valor ingresado debe ser un número.")
 
+    # El jugador indica el numero al cual esta realizando la apuesta
     def _numero(self):
         while True:
             try:
@@ -45,6 +48,7 @@ class Juego:
             except ValueError:
                 print(f"El valor ingresado debe ser un número.")
 
+    # Recoge la apuesta que esta haciendo el jugador al color
     def _apuestaColor(self):
         while True:
             try:
@@ -60,6 +64,7 @@ class Juego:
                 print(f"El valor ingresado debe ser un número.")
         print(f"Saldo {self.dinero}")
 
+    # El jugador indica el color al cual esta realizando la apuesta
     def _color(self):            
         if self.dineroApostadoColor > 0:
             while True:
@@ -70,10 +75,12 @@ class Juego:
                 print("Ponga un valor valido")
                         
 
+    # Se ejecuta el girar ruleta
     def _girarRuleta(self):
         self.jugador.banco.hasGanadoNumero(self.eleccionNum == self.ruleta.numerorandom)
         self.jugador.banco.hasGanadoColor(self.eleccionColor == self.ruleta.colorandom)
 
+    # Mostramos los resultados
     def _resultados(self):
         print('...')
         time.sleep(5)
@@ -82,6 +89,7 @@ class Juego:
         print(f"Saldo actual: {self.jugador.banco.dinero} €")
         print("GRACIAS POR JUGAR")
 
+    # Funcion para pasar la codificacion del color al String correspondiente de color
     def _getColor(self, letra):
         if letra == "V":
             return "Verde"

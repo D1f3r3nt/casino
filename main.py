@@ -5,12 +5,15 @@ from blackjack.mesa import Mesa
 from ruleta.juego import Juego
 from banco import Banco
 
+# Esta funcion sirve para limpiar la consola
 def clear():
+    # Esto es para ver si es windows
     if os.name == "nt":
         os.system("cls")
     else:
         os.system("clear")
 
+# Esta funcion sirve para enseñar el logo del casino
 def show():
     print("""
                  _             
@@ -21,6 +24,7 @@ def show():
      \___\__,_|___/_|_| |_|\___/ 
     """)
 
+# Empezamos con una base de 100 €
 saldo = Banco(100)
 
 while True:
@@ -35,6 +39,7 @@ while True:
     print("==============================================")
     choice = input("==> ")
 
+    # Recogemos el valor y elegimos la eleccion
     if choice == '1':
         clear()
         Juego(saldo)
