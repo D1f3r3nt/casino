@@ -29,7 +29,7 @@ while True:
     print("==============================================")
     print(f"Tu saldo es de {saldo.dinero} €")
     print("Menu:")
-    print("1. Entrar a la Ruleta")
+    print("1. Entrar a la ruleta")
     print("2. Entrar al blackjack")
     print("3. Salir")
     print("==============================================")
