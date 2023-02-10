@@ -65,7 +65,8 @@ class Mesa:
             self.player.mostrar()
 
             if (response == 'D'):
-                self.player.banco.doblarApuesta()
+                if (self.player.banco.doblarApuesta() == False):
+                    print('No se ha podido doblar, no hay saldo')
                 break
 
         time.sleep(2)

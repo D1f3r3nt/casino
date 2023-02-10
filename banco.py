@@ -24,7 +24,11 @@ class Banco:
             return True
         
     def doblarApuesta(self):
-        self.apuesta *= 2
+        if (self.dinero >= self.apuesta * 2):
+            self.apuesta *= 2
+            return True
+        else:
+            return False
 
     def hasGanado(self, resultado):
         if resultado:
