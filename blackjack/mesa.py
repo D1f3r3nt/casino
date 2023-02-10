@@ -66,6 +66,7 @@ class Mesa:
 
             if (response == 'D'):
                 if (self.player.banco.doblarApuesta() == False):
+                    print("==========================================")
                     print('No se ha podido doblar, no hay saldo')
                 break
 
