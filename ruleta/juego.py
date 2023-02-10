@@ -25,7 +25,7 @@ class Juego:
         while True:
             try:
                 print(f"Tu saldo es {self.jugador.banco.dinero} €")
-                print(f"¿Cuánto apuestas? (min 0)")
+                print(f"¿Cuanto apuestas al numero? (min 0)")
                 self.dineroApostadoNum = int(input("==> "))
                 if self.jugador.banco.apostarDinero(self.dineroApostadoNum) and self.dineroApostadoNum >= 0:
                     self.dinero -= self.dineroApostadoNum
@@ -64,7 +64,7 @@ class Juego:
         if self.dineroApostadoColor > 0:
             while True:
                 print(f"A que color quieres apostar Negro(N), Rojo(R) y Verde(V)?")
-                self.eleccionColor = input("==> ")
+                self.eleccionColor = input("==> ").upper()
                 if (self.eleccionColor == "V" or self.eleccionColor == "R" or self.eleccionColor == "N"):
                     break
                 print("Ponga un valor valido")

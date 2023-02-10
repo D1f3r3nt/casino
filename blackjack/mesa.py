@@ -18,6 +18,7 @@ class Mesa:
 
     def _entrada(self):
         print('Bienvenido al blackjack')
+        print(f'Tu saldo es de {self.player.banco.dinero} €')
         while True:
             print('Que quieres apostar? (min. 5)')
             apuesta = input('==> ')
@@ -29,7 +30,7 @@ class Mesa:
                 else:
                     print('No tienes tanto saldo')
                     print('Quieres salir? (exit)')
-                    res = input('==> ')
+                    res = input('==> ').lower()
                     if (res == "exit"):
                         return False
         return True
@@ -51,7 +52,11 @@ class Mesa:
             print('==========================================')
             print()
             print('Quieres pasar(P), coger(C) o doblar(D)?')
-            response = input("==> ")
+            response = input("==> ").upper()
+            if (response != 'P' and response != 'C' and response != 'D'):
+                print("No te he entendido")
+                continue
+
             if (response == 'P'):
                 break
 
@@ -69,10 +74,14 @@ class Mesa:
         print()
 
     def _crupiereJuego(self):
+        print('Juega el crupier, ver juego')
+        self.crupiere.mostrar()
+        self.player.mostrar()
+        print()
+        print('==========================================')
+        print()
+
         while self.player.alive and self.crupiere.alive and self.crupiere.puntos < 17:
-            print('Juega el crupier, ver juego')
-            self.crupiere.mostrar()
-            self.player.mostrar()
             time.sleep(2)
             self.crupiere.cogerCarta(self.baraja.cogerUna())
             self.crupiere.mostrar()
