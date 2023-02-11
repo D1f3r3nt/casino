@@ -2,6 +2,7 @@ import time
 from blackjack.carta import Carta
 from blackjack.jugador import Jugador
 
+# Creamos la clase donde se vera reflejado la logica entre baraja, jugador y el crupier
 class Mesa:
     def __init__(self, saldo):
         self.baraja = Carta()
@@ -15,7 +16,8 @@ class Mesa:
             self._crupiereJuego()
             self._finPartida()
         pass
-
+    
+    # Funcion donde se realizara todo el proceso para comenzar el juego
     def _entrada(self):
         print('Bienvenido al blackjack')
         print(f'Tu saldo es de {self.player.banco.dinero} €')
@@ -35,17 +37,20 @@ class Mesa:
                         return False
         return True
         
-
+    # Funcion donde el crupiere solo cogera una carta y sera la que muestre
     def _crupiereInit(self):
         self.crupiere.cogerCarta(self.baraja.cogerUna())
         self.crupiere.cogerCarta(self.baraja.cogerUna())
         self.crupiere.mostarSoloPrimera()
 
+    # Funcion donde el jugador coger sus respectivas cartas y las muestra 
     def _playerInit(self):
         self.player.cogerCarta(self.baraja.cogerUna())
         self.player.cogerCarta(self.baraja.cogerUna())
         self.player.mostrar()
-
+ 
+    # Funcion donde el jugador mientras este vivo tendra la opcion de elegir si pasar, coger o doblar 
+    # junto control errores para evitar apostar si no hay saldo.
     def _playerJuego(self):
         while self.player.alive:
             print()
@@ -74,7 +79,9 @@ class Mesa:
         print()
         print('==========================================')
         print()
-
+        
+    # Funcion que muestra el juego del crupier una vez el jugador termina su juego o se planta,
+    # este lo que hace es empezar su juego y sacar carta e ir mostrandolas 
     def _crupiereJuego(self):
         print('Juega el crupier, ver juego')
         self.crupiere.mostrar()
@@ -92,6 +99,8 @@ class Mesa:
             print('==========================================')
             print()
 
+    # Funcion de prints para mostrar  los juegos de jugador y crupiere,
+    # junto a los puntos de cada uno de manera correspondiente.
     def _finPartida(self):
         print("...")
         time.sleep(5)
